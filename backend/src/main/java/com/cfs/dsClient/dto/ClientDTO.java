@@ -1,24 +1,15 @@
-package com.cfs.dsClient.entities;
+package com.cfs.dsClient.dto;
 
 import java.io.Serializable;
 import java.time.Instant;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "tb_client")
-public class Client implements Serializable {
+import com.cfs.dsClient.entities.Client;
+
+public class ClientDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String cpf;
@@ -32,17 +23,30 @@ public class Client implements Serializable {
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant updatedAt;
-	
-	public Client() {
+
+	public ClientDTO() {
 	}
 
-	public Client(Long id, String name, String cpf, Double income, Instant birthDate, Integer childrem) {
+	public ClientDTO(Long id, String name, String cpf, Double income, Instant birthDate, Integer childrem,
+			Instant createdAt, Instant updatedAt) {
 		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
 		this.income = income;
 		this.birthDate = birthDate;
 		this.childrem = childrem;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+	}
+	
+	public ClientDTO(Client entity) {
+		this.id = entity.getId();
+		this.name = entity.getName();
+		this.cpf = entity.getCpf();
+		this.income = entity.getIncome();
+		this.birthDate = entity.getBirthDate();
+		this.childrem = entity.getChildrem();
+		
 	}
 
 	public Long getId() {
@@ -93,50 +97,21 @@ public class Client implements Serializable {
 		this.childrem = childrem;
 	}
 
-	
 	public Instant getCreatedAt() {
 		return createdAt;
 	}
 
-	
+	public void setCreatedAt(Instant createdAt) {
+		this.createdAt = createdAt;
+	}
+
 	public Instant getUpdatedAt() {
 		return updatedAt;
 	}
- 
-	@PrePersist
-	public void prePersist() {
-		createdAt= Instant.now();
-		}
-	
-	@PreUpdate
-	public void preUpdate() {
-		updatedAt = Instant.now();
+
+	public void setUpdatedAt(Instant updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Client other = (Client) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-
 	
 }
