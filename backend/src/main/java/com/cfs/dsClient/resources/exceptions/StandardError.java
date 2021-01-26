@@ -10,7 +10,7 @@ public class StandardError implements Serializable {
 	private Instant timestamp;
 	private Integer status;
 	private String error;
-	private String mesaage;
+	private String message;
 	private String path;
 	
 	public StandardError() {
@@ -40,12 +40,12 @@ public class StandardError implements Serializable {
 		this.error = error;
 	}
 
-	public String getMesaage() {
-		return mesaage;
+	public String getMesage() {
+		return message;
 	}
 
-	public void setMesaage(String mesaage) {
-		this.mesaage = mesaage;
+	public void setMesage(String mesaage) {
+		this.message = mesaage;
 	}
 
 	public String getPath() {

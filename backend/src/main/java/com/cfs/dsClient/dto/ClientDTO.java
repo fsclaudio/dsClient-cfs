@@ -16,7 +16,7 @@ public class ClientDTO implements Serializable {
 	private Double income;
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant birthDate;
-	private Integer childrem;
+	private Integer children;
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant createdAt;
@@ -27,16 +27,15 @@ public class ClientDTO implements Serializable {
 	public ClientDTO() {
 	}
 
-	public ClientDTO(Long id, String name, String cpf, Double income, Instant birthDate, Integer childrem,
+	public ClientDTO(Long id, String name, String cpf, Double income, Instant birthDate, Integer children,
 			Instant createdAt, Instant updatedAt) {
 		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
 		this.income = income;
 		this.birthDate = birthDate;
-		this.childrem = childrem;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
+		this.children = children;
+
 	}
 	
 	public ClientDTO(Client entity) {
@@ -45,7 +44,7 @@ public class ClientDTO implements Serializable {
 		this.cpf = entity.getCpf();
 		this.income = entity.getIncome();
 		this.birthDate = entity.getBirthDate();
-		this.childrem = entity.getChildrem();
+		this.children = entity.getChildren();
 		
 	}
 
@@ -89,28 +88,12 @@ public class ClientDTO implements Serializable {
 		this.birthDate = birthDate;
 	}
 
-	public Integer getChildrem() {
-		return childrem;
+	public Integer getChildren() {
+		return children;
 	}
 
-	public void setChildrem(Integer childrem) {
-		this.childrem = childrem;
-	}
-
-	public Instant getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Instant createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Instant getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Instant updatedAt) {
-		this.updatedAt = updatedAt;
+	public void setChildren(Integer children) {
+		this.children = children;
 	}
 	
 	
